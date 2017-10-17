@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+
 namespace TDDMicroExercises.UnicodeFileToHtmlTextConverter.SomeDependencies
 {
     public class aTextConverterClient2
@@ -7,13 +9,12 @@ namespace TDDMicroExercises.UnicodeFileToHtmlTextConverter.SomeDependencies
 		// that has impact on the refactoring.
 
 
-		UnicodeFileToHtmlTextConverter _textConverter;
-
         public aTextConverterClient2()
         {
-            _textConverter = new UnicodeFileToHtmlTextConverter("anotherFilename.txt");
-
-            var html = _textConverter.ConvertToHtml();
+            using (var fileStream = new FileStream("anotherFilename.txt", FileMode.Open))
+            {
+                var html = UnicodeStreamToHtmlTextConverter.ConvertToHtml(fileStream);
+            }
         }
 
     }

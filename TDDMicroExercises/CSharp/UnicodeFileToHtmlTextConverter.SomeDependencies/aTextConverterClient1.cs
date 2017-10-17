@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+
 namespace TDDMicroExercises.UnicodeFileToHtmlTextConverter.SomeDependencies
 {
     public class aTextConverterClient1
@@ -9,8 +11,10 @@ namespace TDDMicroExercises.UnicodeFileToHtmlTextConverter.SomeDependencies
 		public aTextConverterClient1()
         {
             var filename = "aFilename.txt";
-            var textConverter = new UnicodeFileToHtmlTextConverter(filename);
-            var html = textConverter.ConvertToHtml();
+            using (var fileStream = new FileStream(filename, FileMode.Open))
+            {
+                var html = UnicodeStreamToHtmlTextConverter.ConvertToHtml(fileStream);
+            }
         }
     }
 }

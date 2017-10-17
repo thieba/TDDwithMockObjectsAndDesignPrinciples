@@ -7,10 +7,12 @@ namespace TDDMicroExercises.TirePressureMonitoringSystem.SomeDependencies
         // that has impact on the refactoring.
 
         private Alarm _anAlarm;
+        private Sensor _sensor;
 
         public AnAlarmClient3()
         {
-            _anAlarm = new Alarm();
+            _sensor = new Sensor();
+            _anAlarm = new Alarm(_sensor);
         }
 
         public void DoSomething() 
